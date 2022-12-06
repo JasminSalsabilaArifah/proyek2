@@ -53,8 +53,6 @@ if (isset($_POST['edit'])) {
     </div>
        <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><a href="index.php?m=awal">Dashboard</a></li>
-
         <li><a href="index.php?m=siswa&s=awal">Siswa</a></li>
         <li class="active"><a href="index.php?m=kelas&s=awal">Kelas</a></li>
         <li><a href="index.php?m=tabungan&s=awal">Tabungan</a></li>
@@ -71,7 +69,7 @@ if (isset($_POST['edit'])) {
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-               <img src="img/admin/<?= $adm['foto'];?>" height="50"> </i> <?php echo $adm['nama']; ?>
+               <img src="img/admin/profil.png" height="50"> </i> <?php echo $adm['nama']; ?>
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>
@@ -93,9 +91,6 @@ if (isset($_POST['edit'])) {
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
            <ul class="nav nav-pills nav-stacked">
-        <li><a href="index.php?m=awal"><i class="fa fa-diamond" aria-hidden="true"></i>
-Dashboard</a></li>
-
         <li><a href="index.php?m=siswa&s=awal"><i class="fa fa-users" aria-hidden="true"></i>
 Siswa</a></li>
         <li  class="active"><a href="index.php?m=kelas&s=awal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>

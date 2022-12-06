@@ -42,25 +42,7 @@ if (isset($_POST['edit'])) {
 </head>
 <body>
 
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    </div>
-       <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="index.php?m=siswa&s=awal">Siswa</a></li>
-        <li><a href="index.php?m=kelas&s=awal">Kelas</a></li>
-        <li class="active"><a href="index.php?m=tabungan&s=awal">Tabungan</a></li>
-        <li><a href="logout.php">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+
 
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
           <div class="navbar-header">
@@ -73,7 +55,7 @@ if (isset($_POST['edit'])) {
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>
-                 <a href="index.php?m=admin&s=profil"><i class="fa fa-user"></i> Profil</a>
+                 <a href="index.php?m=admin&s=profil" ><i class="fa fa-user"></i> Profil</a>
                     
                 
                 </li><br>
@@ -89,29 +71,10 @@ if (isset($_POST['edit'])) {
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs">
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="index.php?m=siswa&s=awal"><i class="fa fa-users" aria-hidden="true"></i>
-Siswa</a></li>
-        <li><a href="index.php?m=kelas&s=awal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-Kelas</a></li>
-        <li class="active"><a href="index.php?m=tabungan&s=awal"><i class="fa fa-book" aria-hidden="true"></i>
-
-Tabungan</a></li>
-        <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
-      </ul><br>
-    </div>
     <br>
     
-    <div class="col-sm-9">
+    <div class="col-sm-99">
       <!-- Button trigger modal -->
-      <div class="well">
-<a href="index.php?m=tabungan&s=tambah_setoran"><button type="button" class="btn btn-primary" value="">Debit</button></a>
-
-<a href="index.php?m=tabungan&s=penarikan"><button type="button" class="btn btn-warning">
-  Kredit
-</button></a>
-
 <!-- modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -155,9 +118,10 @@ Tabungan</a></li>
             
                         <th>Nama Siswa</th>
                         <th>Kelas</th>
+                        <th>Tanggal</th>
+                        <th>Debit</th>
+                        <th>Kredit</th>
                         <th>saldo</th>
-                        
-                        <th>Aksi</th>
                            
                                                 
                     </tr>

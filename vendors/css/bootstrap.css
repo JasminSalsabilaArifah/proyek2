@@ -4,6 +4,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+.col{}
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -1775,7 +1777,7 @@ pre code {
   margin-left: 0;
 }
 @media (min-width: 768px) {
-  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,.col-sm-99 {
     float: left;
   }
   .col-sm-12 {
@@ -1788,7 +1790,9 @@ pre code {
     width: 83.33333333%;
   }
   .col-sm-9 {
-    width: 75%;
+    width: 85%;}
+  .col-sm-99 {
+      width: 100%;
   }
   .col-sm-8 {
     width: 66.66666667%;
@@ -1806,7 +1810,7 @@ pre code {
     width: 33.33333333%;
   }
   .col-sm-3 {
-    width: 25%;
+    width: 15%;
   }
   .col-sm-2 {
     width: 16.66666667%;

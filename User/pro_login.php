@@ -26,19 +26,21 @@ global $koneksi;
 $user = $_POST['user'];
 $pass = $_POST['pass'];
 
-$sql = "SELECT * FROM tb_admin WHERE username = '$user' AND password = '$pass'";
+$sql = "SELECT * FROM tb_siswa WHERE username = '$user' AND password = '$pass'";
 $login = mysqli_query($koneksi, $sql);
 $ketemu = mysqli_num_rows($login);
 $b = mysqli_fetch_array($login);
 
 if ($ketemu>0) {
 	session_start();
-	$_SESSION['idtabsis'] = $b['id_admin'];
-	$_SESSION['usertabsis'] = $b['username'];
-	$_SESSION['passtabsis'] = md5($b['password']);
+	$_SESSION['idtabsis'] = $b['id_siswa'];
 	$_SESSION['namatabsis'] = $b['nama'];
+	$_SESSION['kelastabsis'] = $b['kelas'];
+	$_SESSION['alamattabsis'] = $b['alamat'];
 	$_SESSION['telepontabsis'] = $b['telepon'];
-	header("location: index.php?m=siswa");
+	$_SESSION['passtabsis'] = ($b['password']);
+	$_SESSION['usertabsis'] = $b['username'];
+	header("location: index.php?m=tabungan");
 
 }else{
 	echo "<div class='alert alert-danger alert-dismissable'>

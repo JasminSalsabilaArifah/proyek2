@@ -21,7 +21,7 @@ if (!$koneksi) {
 
 //URL-----------------------------------------------------------
 function url(){
-	return $url = "//localhost/tabungan-siswa-master/";
+	return $url = "//localhost/proyek2/";
 }
 
 //SUMMON ADMIN
@@ -30,15 +30,25 @@ global $koneksi;
 
 $id = $_SESSION['idtabsis'];
 
-return $query = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE id_admin = '$id'");
+return $query = mysqli_query($koneksi, "SELECT * FROM tb_siswa WHERE id_siswa = '$id'");
 
 
 }
+//SUMMON tabungan
+function summon_tbng(){
+	global $koneksi;
+	
+	$id = $_SESSION['idtabsis'];
+	
+	return $query = mysqli_query($koneksi, "SELECT * FROM tb_tabungan WHERE id_siswa = '$id'");
+	
+	
+	}
 
 // SELECT ADMIN
 function select_admin(){
 	global $koneksi;
-	return mysqli_query($koneksi, "SELECT * FROM tb_admin ORDER BY id DESC");
+	return mysqli_query($koneksi, "SELECT * FROM tb_siswa ORDER BY tb_siswa DESC");
 }
 // INSERT ADMIN
 function insert_admin(){
@@ -51,7 +61,7 @@ function insert_admin(){
 
 	// cek username
 
-	$tambah = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE username='$username'");
+	$tambah = mysqli_query($koneksi, "SELECT * FROM tb_siswa WHERE username='$username'");
 	$row = mysqli_fetch_row($tambah);
 
 	if ($row) {
@@ -69,7 +79,7 @@ function insert_admin(){
    		$nama_file_baru = $angka_acak.'-'.$foto;
    		    if (in_array($ekstensi, $allowed_ext) 	=== true) {
       			move_uploaded_file($file_tmp, 'img/admin/'.$nama_file_baru);
-      			$result = mysqli_query($koneksi, "INSERT INTO tb_admin SET username='$username', password='$password', nama='$nama', telepon='$telepon', foto='$nama_file_baru'");
+      			$result = mysqli_query($koneksi, "INSERT INTO tb_siswa SET username='$username', password='$password', nama='$nama', telepon='$telepon', foto='$nama_file_baru'");
       			if ($result) {
       			  header("location: index.php?m=admin");
       				}else{
@@ -89,14 +99,14 @@ function insert_admin(){
 function hapus_admin(){
 	global $koneksi;
 	$id = $_POST['id'];
-	$sql   = "SELECT * FROM tb_admin WHERE id='$id'";
+	$sql   = "SELECT * FROM tb_siswa WHERE id='$id'";
 	$hapus = mysqli_query($koneksi,$sql);
 	$r     = mysqli_fetch_array($hapus);
 
 	$foto = $r['foto'];
 	//hapus foto
 	unlink("img/admin/$foto");
-	return mysqli_query($koneksi, "DELETE FROM tb_admin WHERE id = '$id'");
+	return mysqli_query($koneksi, "DELETE FROM tb_siswa WHERE id = '$id'");
 }
 
 // EDIT ADMIN
@@ -111,10 +121,11 @@ function update_admin(){
 	$foto = $_FILES['foto']['name'];
 
 	// Unlink
-	$sql   = "SELECT * FROM tb_admin WHERE id_admin='$id'";
+	$sql   = "SELECT * FROM tb_siswa WHERE id='$id'";
 	$hapus = mysqli_query($koneksi,$sql);
 	$r     = mysqli_fetch_array($hapus);
 
+	$hapus_foto = $r['foto'];
 
 	// cek username
 
@@ -144,7 +155,7 @@ function update_admin(){
 
 	}
 	}else{
-		return mysqli_query($koneksi, "UPDATE tb_admin SET username='$username', password='$password', nama='$nama', telepon='$telepon' WHERE id_admin='$id'");
+		return mysqli_query($koneksi, "UPDATE tb_admin SET username='$username', password='$password', nama='$nama', telepon='$telepon' WHERE id='$id'");
 	}
 }
 
@@ -161,7 +172,7 @@ function select_siswa(){
 function hapus_siswa(){
 	global $koneksi;
 	$id = $_POST['id'];
-	$query = "DELETE FROM tb_siswa WHERE id_siswa = '$id'";
+	$query = "DELETE FROM tb_siswa WHERE id = '$id'";
 	return mysqli_query($koneksi, $query);
 }
 
@@ -172,11 +183,10 @@ function insert_siswa(){
 	$nama = $_POST['nama'];
 	$kelas = $_POST['kelas'];
 	$alamat = $_POST['alamat'];
-	$pass = $_POST['pass'];
-	$username = $_POST['username'];
-	$notlp = $_POST['telepon'];
+	$notlp = $_POST['notlp'];
 
-	$save = "INSERT INTO tb_siswa SET nama='$nama', kelas='$kelas', alamat='$alamat', telepon='$notlp', password='$pass', username='$username'";
+
+	$save = "INSERT INTO tb_siswa SET nama='$nama', kelas='$kelas', alamat='$alamat', notlp='$notlp'";
     return $query = mysqli_query($koneksi, $save);
  
 }
@@ -189,12 +199,9 @@ function edit_siswa(){
 	$nama = $_POST['nama'];
 	$kelas = $_POST['kelas'];
 	$alamat = $_POST['alamat'];
-	$pass = $_POST['password'];
-	$username = $_POST['username'];
-	$notlp = $_POST['telepon'];
+	$notlp = $_POST['notlp'];
 
-
-	return mysqli_query($koneksi, "UPDATE tb_siswa SET nama='$nama', kelas='$kelas', alamat='$alamat', telepon='$notlp', password='$pass', username='$username' WHERE id_siswa='$id'");
+	return mysqli_query($koneksi, "UPDATE tb_siswa SET nama='$nama', kelas='$kelas', alamat='$alamat', notlp='$notlp' WHERE id='$id'");
 }
 //JUMLAH SISWA
 function jumlah_siswa()

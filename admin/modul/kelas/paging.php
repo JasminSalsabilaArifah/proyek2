@@ -39,7 +39,7 @@ foreach ($data_kelas as $key):
 
                               <!-- Modal Hapus -->
                             <form action="" method="POST">
-                      <div class="modal fade" id="hapus-admin<?= $key['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="hapus-admin<?= $key['nis'] ?>" aria-hidden="true">
+                      <div class="modal fade" id="hapus-admin<?= $key['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="hapus-admin" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">

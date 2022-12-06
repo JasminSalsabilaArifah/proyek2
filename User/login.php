@@ -6,7 +6,7 @@ require 'fungsi/fungsi.php';
 
 <!DOCTYPE html>
 <html>
-<title>LOGIN ADMIN</title>
+<title>LOGIN USER</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?= url() ?>vendors/css/w3.css">
@@ -43,7 +43,7 @@ a {
     <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
       <div class="container">
         <div class="navbar-header page-scroll">
-          <a class="navbar-brand">Login Tabungan Admin</a>
+          <a class="navbar-brand">Login Tabungan Murid</a>
         </div>
       </div>
     </nav>  
@@ -60,7 +60,7 @@ a {
                 <form class="form" action="" method="post">
                   <div class="form-group input-group">
                     <span class="input-group-addon"><i class="fa fa-laptop"></i></span>
-                    <input class="form-control" type="text" name="user"  required="" placeholder="username">
+                    <input class="form-control" type="text" name="user"  required="" placeholder="Username">
                   </div>
                  
                   <div class="form-group input-group">

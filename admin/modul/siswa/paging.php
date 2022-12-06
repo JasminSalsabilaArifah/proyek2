@@ -33,17 +33,16 @@ foreach ($data_siswa as $key):
 
 
 <tr>
-                              <td><?= $i++;?></td>
-                            
+                              <td><?=  $key['id_siswa'];?></td>
                               <td><?=  $key['nama'];?></td>
                               <td><?=  $key['kelas'];?></td>
                               <td><?=  $key['alamat'];?></td>
-                              <td><?= $key['notlp'];?></td>
-
-                              
+                              <td><?= $key['telepon'];?></td>
+                              <td><?= $key['username'];?></td>
+                              <td><?= $key['password'];?></td>
                               <td>
                                 <!-- Trigger Modal Hapus -->
-                              <div data-toggle="modal" data-target="#hapus-admin<?= $key['id'] ?>">
+                              <div data-toggle="modal" data-target="#hapus-admin<?= $key['id_siswa'] ?>">
                               <button type="button" class="btn btn-danger" data-toggle="tooltip" title="Hapus">
                               <i class="fa fa-trash"></i>
                               </button>
@@ -51,18 +50,19 @@ foreach ($data_siswa as $key):
 
                               <!-- Modal Hapus -->
                             <form action="" method="POST">
-                      <div class="modal fade" id="hapus-admin<?= $key['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="hapus-admin<?= $key['nis'] ?>" aria-hidden="true">
+                      <div class="modal fade" id="hapus-admin<?= $key['id_siswa'] ?>" tabindex="-1" role="dialog" aria-labelledby="hapus-admin" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                           </button>
-                          <b><p class="modal-title" id="hapus-admin<?= $key['id'] ?>" style="text-align: center; font-size: 18px;">Apakah anda yakin ingin dihapus?</p></b>
+                          <b><p class="modal-title" id="hapus-admin<?= $key['id_siswa'] ?>" style="text-align: center; font-size: 18px;">Apakah anda yakin ingin dihapus?</p></b>
                         </div>
                         <div class="modal-body">
                           <div class="modal-body">
-                   
+                          <p>Id Murid</p>
+                        <b><p><?= $key['id_siswa']; ?></p></b>
                             <p>Nama Siswa</p>
                         <b><p><?= $key['nama'] ?></p></b>
                         <p>Kelas</p>
@@ -70,11 +70,16 @@ foreach ($data_siswa as $key):
                         <p>alamat</p>
                         <b><p><?= $key['alamat']; ?></p></b>
                           <p>Nomor Telepon</p>
-                        <b><p><?= $key['notlp']; ?></p></b>
+                        <b><p><?= $key['telepon']; ?></p></b>
+                        <p>Usrname</p>
+                        <b><p><?= $key['username']; ?></p></b>
+                        <p>Password</p>
+                        <b><p><?= $key['password']; ?></p></b>
+                        
                        
                         
                        
-                          <input type="hidden" name="id" value="<?= $key['id'] ?>" class="form-control" hidden>
+                          <input type="hidden" name="id" value="<?= $key['id_siswa'] ?>" class="form-control" hidden>
                           </div>
                          
                         </div>
@@ -88,29 +93,39 @@ foreach ($data_siswa as $key):
                     </form><br>
                     
                     <!-- Trigger Modal Edit -->
-                  <div data-toggle="modal" data-target="#edit-siswa<?= $key['id'] ?>">
+                  <div data-toggle="modal" data-target="#edit-siswa<?= $key['id_siswa'] ?>">
                   <button type="button" class="btn btn-info datapotensi" data-toggle="tooltip" title="Edit">
                     <i class="fa fa-edit"></i>
                   </button>
                 </div>
 
                               <!-- Modal Edit-->
-          <div class="modal fade" id="edit-siswa<?= $key['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="edit-siswa<?= $key['id'] ?>" aria-hidden="true">
+          <div class="modal fade" id="edit-siswa<?= $key['id_siswa'] ?>" tabindex="-1" role="dialog" aria-labelledby="edit-siswa<?= $key['id_siswa'] ?>" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <b><p class="modal-title" id="edit-siswa<?= $key['id'] ?>" style="text-align: center; font-size: 18px;">Edit Data Siswa</p></b>
+                  <b><p class="modal-title" id="edit-siswa<?= $key['id_siswa'] ?>" style="text-align: center; font-size: 18px;">Edit Data Siswa</p></b>
                 </div>
                 <div class="modal-body">
                  <form action="" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" value="<?= $key['id'];?>" name="id">
+                  <input type="hidden" value="<?= $key['id_siswa'];?>" name="id">
   <div class="form-group">
     <label>Nama</label>
     <input type="text" class="form-control" value="<?= $key['nama'];?>" id="exampleInputEmail1" name="nama" aria-describedby="emailHelp" placeholder="Masukkan nama">
     <small class="form-text text-muted">Masukkan nama</small>
+  </div>
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" value="<?= $key['username'];?>" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Masukkan username">
+    <small class="form-text text-muted">Masukkan username</small>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="text" class="form-control" value="<?= $key['password'];?>" id="exampleInputEmail1" name="password" aria-describedby="emailHelp" placeholder="Masukkan username">
+    <small class="form-text text-muted">Masukkan password</small>
   </div>
   <div class="form-group">
     <label>Kelas</label>
@@ -141,7 +156,7 @@ foreach ($data_siswa as $key):
   </div>
  <div class="form-group">
     <label>Nomor telepon</label>
-  <input type="text" class="form-control" id="exampleInputEmail1" name="notlp" value="<?= $key['notlp'];?>" aria-describedby="emailHelp" placeholder="Masukkan Nomor Telepon">
+  <input type="text" class="form-control" id="exampleInputEmail1" name="telepon" value="<?= $key['telepon'];?>" aria-describedby="emailHelp" placeholder="Masukkan Nomor Telepon">
     <small id="emailHelp" class="form-text text-muted">Masukkan nomor telepon</small>
   </div>
 

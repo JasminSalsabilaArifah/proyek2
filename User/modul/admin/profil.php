@@ -46,25 +46,7 @@ foreach (summon_admin() as $adm):
 </head>
 <body>
 
-<nav class="navbar navbar-inverse visible-xs">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="index.php?m=siswa&s=awal">Siswa</a></li>
-        <li><a href="index.php?m=kelas&s=awal">Kelas</a></li>
-        <li><a href="index.php?m=tabungan&s=awal">Tabungan</a></li>
-        <li><a href="logout.php">Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+
 
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
           <div class="navbar-header">
@@ -77,7 +59,7 @@ foreach (summon_admin() as $adm):
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>
-                 <a href="index.php?m=admin&s=profil"><i class="fa fa-user"></i> Profil</a>
+                 <a href="index.php?m=tabungan&s=awal"><i class="fa fa-user"></i> Tabungan</a>
                     
                 
                 </li><br>
@@ -93,46 +75,48 @@ foreach (summon_admin() as $adm):
 
 <div class="container-fluid">
   <div class="row content">
-    <div class="col-sm-3 sidenav hidden-xs">
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="index.php?m=siswa&s=awal"><i class="fa fa-users" aria-hidden="true"></i>
-Siswa</a></li>
-        <li><a href="index.php?m=kelas&s=awal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-Kelas</a></li>
-        <li><a href="index.php?m=tabungan&s=awal"><i class="fa fa-book" aria-hidden="true"></i>
-
-Tabungan</a></li>
-        <li><a href="logout.php"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a></li>
-      </ul><br>
-    </div>
     <br>
    
       
    
-    <div class="col-sm-9">
+    <div class="col-sm-99">
       <div class="well">
-        <h4>Profil</h4>
+        <h4>Profil Murid</h4>
        
       </div>
 
 
     </div>
-         <div class="col-sm-9">
+         <div class="col-sm-99">
       <div class="well">
        <div class="table-responsive">
        	<table class="table table-borderless">
        		<tbody>
+           <tr>
+       				<td>Id Siswa :</td>
+       				<td><?= $adm['id_siswa'];?></td>
+       			</tr>
        			<tr>
        				<td>Nama :</td>
        				<td><?= $adm['nama'];?></td>
+       			</tr>
+             <td>username :</td>
+       				<td><?= $adm['username'];?></td>
+       			</tr>
+             <tr>
+       				<td>Alamat :</td>
+       				<td><?= $adm['alamat'];?></td>
+       			</tr>
+             <td>Kelas :</td>
+       				<td><?= $adm['kelas'];?></td>
        			</tr>
        			<tr>
        				<td>Telepon :</td>
        				<td><?= $adm['telepon'];?></td>
        			</tr>
-       			<tr>
+       			<!-- <tr>
        				<td>Foto :</td>
-       				<td><img src="img/admin/image.png" height="150" data-target="#view_image" data-toggle="modal">
+       				<td><img src="img/admin/?>" height="150" data-target="#view_image" data-toggle="modal"> -->
 
                 <!-- modal view image -->
                 <div class="modal fade" id="view_image" tabindex="-1" role="dialog" aria-labelledby="view_image" aria-hidden="true">
@@ -154,26 +138,20 @@ Tabungan</a></li>
        			</tr>
        			<tr>
        				<td>
-       					<!-- Trigger modal edit -->
-       				<div data-toggle="modal" data-target="#edit-profil<?= $adm['id_admin'] ?>">
-                  <button type="button" class="btn btn-info datapotensi" data-toggle="tooltip" title="Edit">
-                    <i class="fa fa-edit"></i>
-                  </button>
-                </div>
                 <!-- Modal edit -->
-                          <div class="modal fade" id="edit-profil<?= $adm['id_admin'] ?>" tabindex="-1" role="dialog" aria-labelledby="edit-profil<?= $adm['id_admin'] ?>" aria-hidden="true">
+                          <div class="modal fade" id="edit-profil<?= $adm['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="edit-profil<?= $adm['id'] ?>" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <b><p class="modal-title" id="edit-profil<?= $adm['id_admin'] ?>" style="text-align: center; font-size: 18px;">Edit Data Admin</p></b>
+                  <b><p class="modal-title" id="edit-profil<?= $adm['id'] ?>" style="text-align: center; font-size: 18px;">Edit Data Admin</p></b>
                 </div>
                 <!-- Modal Body -->
                 <div class="modal-body">
                  <form action="" method="POST" enctype="multipart/form-data">
-                  <input type="hidden" value="<?= $adm['id_admin'] ?>" name="id">
+                  <input type="hidden" value="<?= $adm['id'] ?>" name="id">
 
   <div class="form-group">
     <label>Username</label>
@@ -198,7 +176,7 @@ Tabungan</a></li>
 
    <div class="form-group">
     <label>Foto Admin</label>
-    <img src="img/admin/image.pnh" height="150"><br>
+    <img src="img/admin/<?= $adm['foto'];?>" height="150"><br>
    	 <input type="checkbox" name="ubahfoto" value="true">Klik jika ingin ubah foto <br>
   </div>
 
