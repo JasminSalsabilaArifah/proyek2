@@ -21,7 +21,7 @@ if (!$koneksi) {
 
 //URL-----------------------------------------------------------
 function url(){
-	return $url = "//localhost/tabungan-siswa-master/";
+	return $url = "//localhost/proyek2/";
 }
 
 //SUMMON ADMIN
@@ -38,7 +38,7 @@ return $query = mysqli_query($koneksi, "SELECT * FROM tb_admin WHERE id_admin = 
 // SELECT ADMIN
 function select_admin(){
 	global $koneksi;
-	return mysqli_query($koneksi, "SELECT * FROM tb_admin ORDER BY id DESC");
+	return mysqli_query($koneksi, "SELECT * FROM tb_admin");
 }
 // INSERT ADMIN
 function insert_admin(){
@@ -47,7 +47,6 @@ function insert_admin(){
 	$password = md5($_POST['password']);
 	$nama = $_POST['nama'];
 	$telepon = $_POST['telepon'];
-	$foto = $_FILES['foto']['name'];
 
 	// cek username
 
@@ -60,18 +59,9 @@ function insert_admin(){
   			Maaf, username sudah ada.
   			</div>";
 	}else{
-			if ($foto != "") {
-		$allowed_ext = array('png','jpg');
-		$x = explode(".", $foto);
-		$ekstensi = strtolower(end($x));
-		$file_tmp = $_FILES['foto']['tmp_name'];
-		$angka_acak = rand(1,999);
-   		$nama_file_baru = $angka_acak.'-'.$foto;
-   		    if (in_array($ekstensi, $allowed_ext) 	=== true) {
-      			move_uploaded_file($file_tmp, 'img/admin/'.$nama_file_baru);
-      			$result = mysqli_query($koneksi, "INSERT INTO tb_admin SET username='$username', password='$password', nama='$nama', telepon='$telepon', foto='$nama_file_baru'");
-      			if ($result) {
-      			  header("location: index.php?m=admin");
+      	$result = mysqli_query($koneksi, "INSERT INTO tb_admin SET username='$username', password='$password', nama='$nama', telepon='$telepon'");
+      		if ($result) {
+      			  header("location: index.php?m=admin&s=tittle#");
       				}else{
       			  echo "gagal";
       				}
@@ -80,10 +70,6 @@ function insert_admin(){
 
 
 	}
-	}
-
-
-}
 
 // HAPUS ADMIN
 function hapus_admin(){
@@ -105,10 +91,9 @@ function update_admin(){
 
 	$id = $_POST['id'];
 	$username = $_POST['username'];
-	$password = md5($_POST['password']);
+	$password = md5($_POST['pass']);
 	$nama = $_POST['nama'];
 	$telepon = $_POST['telepon'];
-	$foto = $_FILES['foto']['name'];
 
 	// Unlink
 	$sql   = "SELECT * FROM tb_admin WHERE id_admin='$id'";
@@ -172,7 +157,7 @@ function insert_siswa(){
 	$nama = $_POST['nama'];
 	$kelas = $_POST['kelas'];
 	$alamat = $_POST['alamat'];
-	$pass = $_POST['pass'];
+	$pass = md5($_POST['pass']);
 	$username = $_POST['username'];
 	$notlp = $_POST['telepon'];
 
@@ -189,7 +174,7 @@ function edit_siswa(){
 	$nama = $_POST['nama'];
 	$kelas = $_POST['kelas'];
 	$alamat = $_POST['alamat'];
-	$pass = $_POST['password'];
+	$pass = md5($_POST['password']);
 	$username = $_POST['username'];
 	$notlp = $_POST['telepon'];
 
@@ -313,28 +298,10 @@ function tambah_setoran(){
 	$tambah_saldo = $saldo + $setoran;
 
 	//cek id siswa
-	$tambah = mysqli_query($koneksi, "SELECT * FROM tb_tabungan WHERE id_siswa='$id_siswa'");
-	$row = mysqli_fetch_row($tambah);
-
-	if ($row) {
-		$query = mysqli_query($koneksi, "UPDATE tb_tabungan SET  id_siswa = '$id_siswa', nama='$nama', kelas='$kelas', tanggal='$tanggal', setoran='$setoran', penarikan=0, saldo='$tambah_saldo' WHERE id_tabungan='$id_tabungan'");
-		header("location: index.php?m=tabungan&s=print&id_siswa=$id_siswa");
-	}else{
-		$query =  "INSERT INTO tb_tabungan SET id_siswa='$id', nama='$nama',kelas='$kelas', tanggal='$tanggal', setoran='setoran', penarikan=0, saldo='$setoran'";
-		 mysqli_query($koneksi, $query);
-		 header("location: index.php?m=tabungan&s=print&id_siswa=$id");
-	}
-
-
-
-	
-
-	
-
-	
-
-	if ($query) {
-		
+	$query = mysqli_query($koneksi, "INSERT INTO  tb_tabungan SET  id_tabungan = '$id_tabungan', id_siswa = '$id_siswa', nama='$nama', kelas='$kelas', tanggal='$tanggal', setoran='$setoran', penarikan=0, saldo='$tambah_saldo'");
+	$query1 = mysqli_query($koneksi, "UPDATE tb_siswa SET saldo = '$tambah_saldo' WHERE id_tabungan = '$id_tabungan';");
+	if ($query && $query1) {
+		header("location: index.php?m=tabungan&s=awal");
 	}else{
 		echo "gagal";
 	}
@@ -356,10 +323,10 @@ function penarikan_saldo(){
 
 	$penarikan_saldo = $saldo - $penarikan;
 
-	$query = mysqli_query($koneksi, "UPDATE tb_tabungan SET  id_siswa = '$id_siswa', nama='$nama', kelas='$kelas', tanggal='$tanggal', setoran=0, penarikan='$penarikan', saldo='$penarikan_saldo' WHERE id_tabungan='$id_tabungan'");
-
-	if ($query) {
-		header("location: index.php?m=tabungan&s=print&id_siswa=$id_siswa");
+	$query = mysqli_query($koneksi, "INSERT INTO  tb_tabungan SET  id_tabungan = '$id_tabungan', id_siswa = '$id_siswa', nama='$nama', kelas='$kelas', tanggal='$tanggal', setoran=0, penarikan='$penarikan', saldo='$penarikan_saldo'");
+	$query1 = mysqli_query($koneksi, "UPDATE tb_siswa SET saldo = '$penarikan_saldo' WHERE id_tabungan = '$id_tabungan';");
+	if ($query && $query1) {
+		header("location: index.php?m=tabungan&s=awal");
 	}else{
 		echo "gagal";
 	}

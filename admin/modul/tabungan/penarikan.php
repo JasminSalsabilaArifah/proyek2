@@ -51,10 +51,7 @@ foreach (summon_admin() as $adm):
     </div>
        <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-       <ul class="nav navbar-nav">
-        <li><a href="index.php?m=awal">Dashboard</a></li>
-
-        <li><a href="index.php?m=siswa&s=awal">Siswa</a></li>
+       <ul class="nav navbar-nav"><li><a href="index.php?m=siswa&s=awal">Siswa</a></li>
         <li><a href="index.php?m=kelas&s=awal">Kelas</a></li>
         <li class="active"><a href="index.php?m=tabungan&s=awal">Tabungan</a></li>
         <li><a href="logout.php">Logout</a></li>
@@ -71,7 +68,7 @@ foreach (summon_admin() as $adm):
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-               <img src="img/admin/<?= $adm['foto'];?>" height="50"> </i> <?php echo $adm['nama']; ?>
+               <img src="img/admin/image.png" height="50"> </i> <?php echo $adm['nama']; ?>
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>
@@ -92,11 +89,7 @@ foreach (summon_admin() as $adm):
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="index.php?m=awal"><i class="fa fa-diamond" aria-hidden="true"></i>
-Dashboard</a></li>
-
-        <li><a href="index.php?m=siswa&s=awal"><i class="fa fa-users" aria-hidden="true"></i>
+      <ul class="nav nav-pills nav-stacked"><li><a href="index.php?m=siswa&s=awal"><i class="fa fa-users" aria-hidden="true"></i>
 Siswa</a></li>
         <li><a href="index.php?m=kelas&s=awal"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
 Kelas</a></li>
@@ -160,7 +153,7 @@ Tabungan</a></li>
 
             <div class="form-group">
               <button class="btn btn-success" id="endButton" name="simpan">Simpan</button>
-              <button class="btn btn-danger" href="proyek2/admin/index.php?m=tabungan&s=awal">Batal</button>
+              <button class="btn btn-danger" href="index.php?m=tabungan&s=awal">Batal</button>
             </div>
 
             <script type="text/javascript">
@@ -219,7 +212,6 @@ Tabungan</a></li>
                                         <th>Id Siswa</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
-                                        <th>tanggal</th>
                                         <th>saldo</th>
                                         <!--<th>Jenis Kelamin</th>
                                         <th>Tempat</th>
@@ -231,13 +223,11 @@ Tabungan</a></li>
                       $no = 1;
                       $data = mysqli_query ($koneksi, " SELECT  *
                                             from 
-                                            tb_tabungan
-                                            order by id_tabungan ASC");
+                                            tb_siswa
+                                            order by id_siswa ASC");
                       foreach ($data as $sa):
-                        
-                      
                     ?>
-                  <tr id="tb_tabungan" data-id_tabungan="<?= $sa['id_tabungan'];?>" data-id_siswa="<?= $sa['id_siswa'];?>" data-nama="<?= $sa['nama'];?>" data-kelas="<?= $sa['kelas'];?>" data-tanggal="<?= $sa['tanggal'];?>" data-saldo="<?= $sa['saldo'];?>">
+                  <tr id="tb_siswa" data-id_tabungan="<?= $sa['id_tabungan'];?>" data-id_siswa="<?= $sa['id_siswa'];?>" data-nama="<?= $sa['nama'];?>" data-kelas="<?= $sa['kelas'];?>" data-saldo="<?= $sa['saldo'];?>">
                     <td>
                       <?php echo $no++; ?>
                     </td>
@@ -254,12 +244,8 @@ Tabungan</a></li>
                       <?php echo $sa['kelas']; ?>
                     </td>
                     <td>
-                      <?php echo $sa['tanggal']; ?>
-                    </td>
-                    <td>
                       <?php echo $sa['saldo']; ?>
                     </td>
-                    
                   </tr>
                   <?php
                     endforeach;
@@ -270,13 +256,12 @@ Tabungan</a></li>
           </div>  
           
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" href="proyek2/admin/index.php?m=tabungan&s=awal">Batal</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" href="index.php?m=tabungan&s=awal">Batal</button>
           </div>
       </div>
     </div>
   </div>
   
-
 
 
 <!-- Footer -->
@@ -285,7 +270,21 @@ Tabungan</a></li>
   </div>
 </footer>
 <script src="<?= url() ?>vendors/jquery/jquery.min.js"></script>
-  <script src="<?= url() ?>vendors/js/bootstrap.min.js"></script> </body>
-</body>
+  <script src="<?= url() ?>vendors/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+      
+      $(document).on('click', '#tb_siswa', function (e) {
+        document.getElementById("id_tabungan").value = $(this).attr('data-id_tabungan');
+        document.getElementById("id_siswa").value = $(this).attr('data-id_siswa');
+        document.getElementById("nama").value = $(this).attr('data-nama');
+        document.getElementById("kelas").value = $(this).attr('data-kelas');
+        document.getElementById("saldo").value = $(this).attr('data-saldo');
+        $('#modal').modal('hide');
+      }); 
+      
+    });
+    </script>
+   </body>
 </html>
 <?php endforeach; ?>

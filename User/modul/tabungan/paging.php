@@ -11,7 +11,7 @@ $next = $halaman + 1;
 
 $idsi = 'id_siswa';
 
-$data = mysqli_query($koneksi, "SELECT * FROM tb_tabungan");
+$data = mysqli_query($koneksi, "SELECT * FROM tb_tabungan " );
 $jumlah_data = mysqli_num_rows($data);
 $total_halaman = ceil($jumlah_data / $batas);
 

@@ -71,42 +71,10 @@ if (isset($_POST['edit'])) {
 
 <div class="container-fluid">
   <div class="row content">
-    <br>
-    
     <div class="col-sm-99">
-      <!-- Button trigger modal -->
-<!-- modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Tambah data admin</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="" method="POST" enctype="multipart/form-data">
-
-  <div class="form-group">
-    <label>Nama Kelas</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="nama_kelas" aria-describedby="emailHelp" placeholder="Masukkan nama kelas">
-    <small class="form-text text-muted">Masukkan nama kelas</small>
-  </div>
-  
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" name="simpan" class="btn btn-primary">Save changes</button>
-      </div>
-        </form>
+    <div class="well">
+      <h3>Saldo : <?= rupiah($adm['saldo']);?></h3>
     </div>
-  </div>
-</div>
-      </div>
-
-
        <div class="row">
         <div class="col-sm-12">
           <div class="well">

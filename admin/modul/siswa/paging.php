@@ -39,7 +39,6 @@ foreach ($data_siswa as $key):
                               <td><?=  $key['alamat'];?></td>
                               <td><?= $key['telepon'];?></td>
                               <td><?= $key['username'];?></td>
-                              <td><?= $key['password'];?></td>
                               <td>
                                 <!-- Trigger Modal Hapus -->
                               <div data-toggle="modal" data-target="#hapus-admin<?= $key['id_siswa'] ?>">

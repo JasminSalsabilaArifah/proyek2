@@ -214,7 +214,6 @@ Tabungan</a></li>
                         <th>Kelas</th>
                         <th>Alamat</th>
                         <th>Nomor Telepon</th>
-                        <th>Password</th>
                         <th>Username</th>
                         <th>Aksi</th>                  
                     </tr>

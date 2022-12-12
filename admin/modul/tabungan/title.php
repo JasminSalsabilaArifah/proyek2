@@ -152,12 +152,12 @@ Tabungan</a></li>
                   <thead>
                     <tr>
                         <th>NO</th> 
-            
+                        <th>ID Tabungan</th>
                         <th>Nama Siswa</th>
-                        <th>Kelas</th>
-                        <th>saldo</th>
-                        
-                        <th>Aksi</th>
+                        <th>Date</th>
+                        <th>Debit</th>
+                        <th>Kredit</th>
+                        <th>Saldo</th>
                            
                                                 
                     </tr>

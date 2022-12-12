@@ -4,7 +4,6 @@ require 'fungsi/fungsi.php';
 if (isset($_POST['edit'])) {
 	update_admin();
 }
-
 foreach (summon_admin() as $adm): 
 
 
@@ -77,7 +76,7 @@ foreach (summon_admin() as $adm):
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>
-                 <a href="index.php?m=admin&s=profil"><i class="fa fa-user"></i> Profil</a>
+                 <a href="index.php?m=admin&s=tittle#"><i class="fa fa-user"></i> Admin</a>
                     
                 
                 </li><br>
@@ -130,27 +129,12 @@ Tabungan</a></li>
        				<td>Telepon :</td>
        				<td><?= $adm['telepon'];?></td>
        			</tr>
-       			<tr>
-       				<td>Foto :</td>
-       				<td><img src="img/admin/image.png" height="150" data-target="#view_image" data-toggle="modal">
-
-                <!-- modal view image -->
-                <div class="modal fade" id="view_image" tabindex="-1" role="dialog" aria-labelledby="view_image" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-          <!--       <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                  <b><p class="modal-title" id="view_image" style="text-align: center; font-size: 18px;">Edit Data Admin</p></b>
-                </div> -->
-                <!-- Modal Body -->
-              <!--   <div class="modal-body"> </div> -->
-                <center><img src="img/admin/<?= $adm['foto'];?>" height="512"></center>
-               
-              </div>
-            </div>
-              </td>
+             <tr>
+       				<td>Id :</td>
+       				<td><?= $adm['id_admin'];?></td>
+       			</tr><tr>
+       				<td>Username :</td>
+       				<td><?= $adm['username'];?></td>
        			</tr>
        			<tr>
        				<td>
@@ -182,8 +166,8 @@ Tabungan</a></li>
   </div>
     <div class="form-group">
     <label>Password</label>
-    <input type="password" class="form-control"  id="exampleInputEmail1" name="password" aria-describedby="emailHelp" placeholder="Masukkan nama">
-   
+    <input type="password" class="form-control" value="<?= $adm['password'];?>" id="exampleInputEmail1" name="pass" aria-describedby="emailHelp" placeholder="Masukkan pass">
+  
   </div>
     <div class="form-group">
     <label>Nama Admin</label>
@@ -193,22 +177,6 @@ Tabungan</a></li>
     <div class="form-group">
     <label>Telepon Admin</label>
     <input type="text" class="form-control" value="<?= $adm['telepon'];?>" id="exampleInputEmail1" name="telepon" aria-describedby="emailHelp" placeholder="Masukkan nama">
-   
-  </div>
-
-   <div class="form-group">
-    <label>Foto Admin</label>
-    <img src="img/admin/image.pnh" height="150"><br>
-   	 <input type="checkbox" name="ubahfoto" value="true">Klik jika ingin ubah foto <br>
-  </div>
-
-      <div class="form-group">
-    <label>Masukkan Foto Baru</label>
-    <input type="file" name="foto">
-   
-  </div>
-  
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

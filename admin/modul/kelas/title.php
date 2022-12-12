@@ -69,7 +69,7 @@ if (isset($_POST['edit'])) {
         <ul class="nav navbar-top-links navbar-right">
             <li class="dropdown">
               <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-               <img src="img/admin/profil.png" height="50"> </i> <?php echo $adm['nama']; ?>
+               <img src="img/admin/image.png" height="50"> </i> <?php echo $adm['nama']; ?>
               </a>
               <ul class="dropdown-menu dropdown-user">
                 <li>

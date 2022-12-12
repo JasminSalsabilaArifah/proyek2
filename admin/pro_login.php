@@ -24,7 +24,7 @@
 global $koneksi;
 
 $user = $_POST['user'];
-$pass = $_POST['pass'];
+$pass = md5($_POST['pass']);
 
 $sql = "SELECT * FROM tb_admin WHERE username = '$user' AND password = '$pass'";
 $login = mysqli_query($koneksi, $sql);
