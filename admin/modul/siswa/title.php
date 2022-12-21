@@ -18,6 +18,17 @@ if (isset($_POST['edit'])) {
 <html lang="en">
 <head>
   <title>Siswa</title>
+  <script>
+ 
+function harusHuruf(evt){
+        var charCode = (evt.which) ? evt.which : event.keyCode
+        if ((charCode < 65 || charCode > 90)&&(charCode < 97 || charCode > 122)&&charCode>32)
+            return false;
+        return true;
+}
+ 
+ 
+</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="<?= url() ?>vendors/css/w3.css">
@@ -124,18 +135,23 @@ Tabungan</a></li>
       <div class="modal-body">
         <form action="" method="POST" enctype="multipart/form-data">
   <div class="form-group">
+    <label>NIK</label>
+    <input type="number" class="form-control" id="ids" name="id_siswa" aria-describedby="emailHelp" placeholder="Masukkan NIK">
+    <small class="form-text text-muted">Masukkan NIK</small>
+  </div>
+  <div class="form-group">
     <label>Nama</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="nama" aria-describedby="emailHelp" placeholder="Masukkan nama">
+    <input type="text" class="form-control" id="nama" name="nama" aria-describedby="emailHelp" placeholder="Masukkan nama">
     <small class="form-text text-muted">Masukkan nama</small>
   </div>
   <div class="form-group">
     <label>Username</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="username" aria-describedby="emailHelp" placeholder="Masukkan username">
+    <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" placeholder="Masukkan username">
     <small class="form-text text-muted">Masukkan Username</small>
   </div>
   <div class="form-group">
     <label>Password</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" name="pass" aria-describedby="emailHelp" placeholder="Masukkan password">
+    <input type="text" class="form-control" id="pass" name="pass" aria-describedby="emailHelp" placeholder="Masukkan password">
     <small class="form-text text-muted">Masukkan password</small>
   </div>
   <!-- SELECT KELAS -->
@@ -171,11 +187,11 @@ Tabungan</a></li>
   <div class="form-group">
     <label for="exampleInputEmail1">Alamat</label>
    <textarea class="form-control" name="alamat"></textarea>
-    <small id="emailHelp" class="form-text text-muted">Masukkan Alamat</small>
+    <small id="alamat" class="form-text text-muted">Masukkan Alamat</small>
   </div>
  <div class="form-group">
     <label>Nomor telepon</label>
-  <input type="text" class="form-control" id="exampleInputEmail1" name="telepon" aria-describedby="emailHelp" placeholder="Masukkan Nomor Telepon">
+  <input type="text" class="form-control" id="telepon" name="telepon" aria-describedby="emailHelp" placeholder="Masukkan Nomor Telepon">
     <small id="emailHelp" class="form-text text-muted">Masukkan nomor telepon</small>
   </div>
 
@@ -184,6 +200,28 @@ Tabungan</a></li>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" name="simpan" class="btn btn-primary">Save changes</button>
       </div>
+      <script type="text/javascript">
+                
+                    var ids = document.getElementById('is_siswa')
+                    // var nama = document.getElementById('nama')
+                    // var username = document.getElementById('username')
+                    // var pass = document.getElementById('pass')
+                    // var alamat = document.getElementById('alamat')
+                    // var notlp = document.getElementById('telepon')
+
+
+                    ids.addEventListener('keyup', function(){
+                      if(setoran.value == ""){
+                        message2.textContent = 'Kolom tidak boleh kosong!'
+                        document.getElementById('endButton').disabled = true;
+                      }else if (setoran.value) {
+                        message2.textContent = ''
+                        document.getElementById('endButton').disabled = false;
+                      }
+                    })
+
+
+                  </script>
         </form>
     </div>
   </div>
@@ -195,7 +233,7 @@ Tabungan</a></li>
     <div class="well">
       <form action="" method="POST">
         <label>Cari</label>
-        <input type="text" name="cari" placeholder="Cari nama siswa" class="">
+        <input type="text" name="cari" placeholder="Cari nama siswa" required onkeypress='return harusHuruf(event)'>
         <input type="submit" name="go" value="Cari" class="btn btn-success">
       </form>
     </div>
@@ -265,3 +303,4 @@ Tabungan</a></li>
   <script src="<?= url() ?>vendors/js/bootstrap.min.js"></script> </body>
 </html>
 <?php endforeach; ?>
+

@@ -154,6 +154,7 @@ function hapus_siswa(){
 function insert_siswa(){
 	global $koneksi;
 
+	$id_siswa = $_POST['id_siswa'];
 	$nama = $_POST['nama'];
 	$kelas = $_POST['kelas'];
 	$alamat = $_POST['alamat'];
@@ -161,9 +162,23 @@ function insert_siswa(){
 	$username = $_POST['username'];
 	$notlp = $_POST['telepon'];
 
-	$save = "INSERT INTO tb_siswa SET nama='$nama', kelas='$kelas', alamat='$alamat', telepon='$notlp', password='$pass', username='$username'";
-    return $query = mysqli_query($koneksi, $save);
- 
+	$tambah = mysqli_query($koneksi, "SELECT * FROM tb_siswa WHERE id_siswa='$id_siswa'");
+	$row = mysqli_fetch_row($tambah);
+
+	if ($row) {
+		echo "<div class='alert alert-danger alert-dismissable'>
+  			<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+  			Maaf, NIK sudah terdaftar.
+  			</div>";
+	}else{
+      	$result = mysqli_query($koneksi, "INSERT INTO tb_siswa SET id_siswa='$id_siswa', nama='$nama', kelas='$kelas', alamat='$alamat', telepon='$notlp', password='$pass', username='$username', saldo=0");
+      		if ($result) {
+      			  header("location: index.php?m=siswa");
+      				}else{
+      			  echo "gagal";
+      				}
+    }
+
 }
 
 // EDIT SISWA
@@ -248,38 +263,6 @@ function select_tabungan(){
 	// 															  id_siswa = id
 	// 															  group by nama ASC");
 	return mysqli_query($koneksi, "SELECT id_tabungan, nama, kelas, saldo FROM tb_tabungan");
-}
-
-//insert setoran awal
-function insert_setoran_awal(){
-	global $koneksi;
-
-	$id = $_POST['id_siswa'];
-	$nama = $_POST['nama'];
-	$kelas = $_POST['kelas'];
-	$tanggal = $_POST['tanggal'];
-	$saldo = $_POST['saldo'];
-
-	// Cek apakah id siswa ada
-	$tambah = mysqli_query($koneksi, "SELECT * FROM tb_tabungan WHERE id_siswa='$id'");
-	$row = mysqli_fetch_row($tambah);
-
-	if ($row) {
-		echo "<div class='alert alert-danger alert-dismissable'>
-  			<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-  			Maaf data dengan id ".$id." sudah ada.
-  			</div>";
-	}else{
-		 $query =  "INSERT INTO tb_tabungan SET id_siswa='$id', nama='$nama',kelas='$kelas', tanggal='$tanggal', setoran=0, penarikan=0, saldo='$saldo'";
-		 mysqli_query($koneksi, $query);
-		 header("location: index.php?m=tabungan&s=print&id_siswa=$id");
-	}
-
-	// $sql = "SELECT id, nama, kelas, tanggal, saldo FROM tb_tabungan ORDER BY id_tabungan DESC";
-
-	
-
-
 }
 
 // insert setoran / tambah setoran
